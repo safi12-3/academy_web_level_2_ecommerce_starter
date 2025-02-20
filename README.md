@@ -32,12 +32,13 @@ A modern e-commerce web application built with React, and Tailwind CSS. This pro
 
 ## 🏗️ Project Structure 
 
+```
 src/
 ├── components/ # Reusable UI components
 ├── lib/ # Utility functions and configurations
 ├── pages/ # Application pages/routes
 └── App.tsx # Root component
-
+```
 
 ## 📥 Getting Started with GitHub
 
