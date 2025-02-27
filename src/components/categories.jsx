@@ -7,18 +7,19 @@ export default function Categories() {
     <div id="categories" className=" flex flex-col gap-5 ">
 <Title text={"  Featured Categories"}/>
 
-    {/* Grid Layout for Categories */}
-    <div className="flex justify-center gap-10">
+  
+    <div className="flex justify-center gap-10 mt-10">
       {featured_categories.map((category) => (
         <div
           key={category.id}
-          className="relative rounded-lg overflow-hidden shadow-md"
+          className="relative rounded-lg overflow-hidden shadow-md cursor-pointer transform transition-transform duration-300 hover:scale-105"
         >
-          {/* Category Image */}
+        
           <img
+          className="w-full h-64 object-cover "
             src={category.image_src}
             alt={category.name}
-            className="w-full h-64 object-cover"
+            
           />
 
           {/* Dark Overlay */}

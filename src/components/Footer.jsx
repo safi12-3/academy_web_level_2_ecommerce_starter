@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white py-12 mt-20">
+    <footer className="bg-gray-800 text-white py-12 ">
       <div className="max-w-screen-xl mx-auto px-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {/* Footer Links */}
@@ -16,7 +16,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Social Media Links */}
           <div>
             <h3 className="text-xl font-semibold mb-4">Follow Us</h3>
             <ul className="space-y-4">
@@ -27,7 +26,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact Info */}
           <div>
             <h3 className="text-xl font-semibold mb-4">Contact</h3>
             <ul className="space-y-4">
@@ -39,7 +37,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Footer Bottom */}
         <div className="mt-12 border-t border-gray-700 pt-8 text-center">
           <p>&copy; 2025 ShopHub. All rights reserved.</p>
         </div>
