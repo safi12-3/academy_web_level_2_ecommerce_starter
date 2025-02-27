@@ -1,14 +1,15 @@
-import React from 'react'
-import HeroSection from '../components/heroSection'
-import Categories from '../components/categories'
-import Products from '../components/Products'
+import HeroSection from "../components/heroSection";
+import Categories from "../components/categories";
+import Products from "../components/Products";
+import CategoriesPage from "./categoriesPage";
 
 export default function Home() {
   return (
-    <div className='flex flex-col gap-10'>
-        <HeroSection/>
-        <Categories/>
-        <Products/> 
+    <div className="flex flex-col gap-10">
+      <HeroSection />
+      <Categories />
+      <Products />
+      <CategoriesPage />
     </div>
-  )
+  );
 }
