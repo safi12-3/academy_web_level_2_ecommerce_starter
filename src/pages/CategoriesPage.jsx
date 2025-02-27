@@ -1,5 +1,8 @@
-export default function CategoriesPage() {
-  <>
+import React from 'react'
+
+const CategoriesPage = () => {
+  return (
+    <>
     <header>Header</header>
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <h1 className="text-3xl font-bold">Shop by Category</h1>
@@ -54,5 +57,8 @@ export default function CategoriesPage() {
         </div>
       </div>
     </div>
-  </>;
+  </>
+  )
 }
+
+export default CategoriesPage
