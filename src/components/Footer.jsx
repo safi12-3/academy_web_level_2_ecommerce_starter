@@ -5,7 +5,7 @@ const Footer = () => {
     <footer className="bg-gray-800 text-white py-12 ">
       <div className="max-w-screen-xl mx-auto px-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          {/* Footer Links */}
+          
           <div>
             <h3 className="text-xl font-semibold mb-4">ShopHub</h3>
             <ul className="space-y-4">

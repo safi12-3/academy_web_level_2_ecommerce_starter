@@ -1,6 +1,8 @@
 import React from "react";
 import { initialProducts } from "../lib/data";
 import Title from "./UI/title";
+import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Products() {
   return (
@@ -15,13 +17,23 @@ export default function Products() {
             <div
               id="product-card"
               key={product.id}
-              className="shadow-md bg-white rounded-lg overflow-hidden flex flex-col transition-transform duration-300 hover:scale-105"
-            >
-              <img
-                src={product.image_url}
-                className="w-full h-56 object-cover"
-                alt={product.name}
-              />
+              className="relative shadow-md bg-white rounded-lg overflow-hidden flex flex-col"
+            > 
+              {/* Image Wrapper with Heart Icon */}
+              <div className="relative">
+                <img
+                  src={product.image_url}
+                  className="w-full h-56 object-cover transition-transform duration-300 hover:scale-105"
+                  alt={product.name}
+                />
+                {/* Heart Icon Positioned at Top-Right */}
+                <div className="absolute top-3 right-3 bg-white w-10 h-10 flex items-center justify-center rounded-full shadow-md cursor-pointer">
+  <FontAwesomeIcon icon={faHeart} className="text-gray-600 text-xl" />
+</div>
+
+              </div>
+
+              {/* Product Info */}
               <div id="item-info" className="p-4 flex flex-col gap-2">
                 <h1 className="font-bold">{product.name}</h1>
                 <h2 className="text-gray-600">{product.description}</h2>
@@ -39,7 +51,7 @@ export default function Products() {
             </div>
           ))}
         </div>
-
+        
         <div className="flex justify-center mt-6">
           <button className="px-4 py-2 text-base font-medium rounded-md text-blue-600 bg-white hover:bg-gray-50">
             View All Products

@@ -1,10 +1,8 @@
-
 import "./index.css";
 import Navbar from "./components/Navbar";
-
-
 import Footer from "./components/Footer";
 import Home from "./pages/home";
+import Contact from "./pages/Contact";
 
 function App() {
   return (
@@ -12,6 +10,7 @@ function App() {
       <Navbar />
       <Home />
       <Footer />
+      <Contact />
     </>
   );
 }
