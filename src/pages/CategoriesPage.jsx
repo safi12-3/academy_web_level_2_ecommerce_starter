@@ -1,7 +1,6 @@
 const CategoriesPage = () => {
   return (
     <>
-      <header>Header</header>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <h1 className="text-3xl font-bold">Shop by Category</h1>
         <div className="criterias grid grid-cols-1 md:grid-cols-3 gap-6 p-6 mt-10 border-4 border-white rounded-lg shadow-sm">

@@ -4,15 +4,16 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Categories from "./components/categories";
+import CategoriesPage from "./pages/CategoriesPage";
 
 function App() {
   return (
     <>
-      <Navbar />
       <BrowserRouter>
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="categories" element={<Categories />} />
+          <Route path="categories" element={<CategoriesPage />} />
           <Route path="categories" element={<Categories />} />
           <Route path="favorites" element={""} />
           <Route path="cart" element={""} />
