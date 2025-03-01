@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "../components/Navbar";
 import Title from "../components/UI/title";
 import { Mail, Phone, MapPin } from "lucide-react"; 
 
