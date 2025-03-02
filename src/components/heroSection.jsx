@@ -1,7 +1,6 @@
-import React from "react";
 import home_image from "../assets/home_image.jpg";
 
-const  HeroSection = () => {
+const HeroSection = () => {
   return (
     <div>
       {/* Hero Section */}
@@ -46,8 +45,6 @@ const  HeroSection = () => {
       </div>
 
       {/* Featured Categories Section */}
-
-
     </div>
   );
 };

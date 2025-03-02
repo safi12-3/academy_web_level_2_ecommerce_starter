@@ -1,7 +1,5 @@
-import React from "react";
 import Title from "../components/UI/title";
-import { Mail, Phone, MapPin } from "lucide-react"; 
-
+import { Mail, Phone, MapPin } from "lucide-react";
 
 const Contact = () => {
   return (
@@ -22,7 +20,6 @@ const Contact = () => {
                 placeholder="Enter your name"
               />
             </div>
-
 
             <div>
               <label className="block text-gray-700 font-medium">Email</label>
@@ -77,12 +74,10 @@ const Contact = () => {
 
           <h2 className="text-2xl font-semibold mt-8">Business Hours</h2>
           <p className="mt-3">
-
-            <span className="font-medium">Monday - Friday:</span> 9:00 AM - 6:00 PM
-
             <span className="font-medium">Monday - Friday:</span> 9:00 AM - 6:00
             PM
-
+            <span className="font-medium">Monday - Friday:</span> 9:00 AM - 6:00
+            PM
           </p>
           <p>
             <span className="font-medium">Saturday:</span> 10:00 AM - 4:00 PM

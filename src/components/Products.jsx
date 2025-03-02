@@ -1,4 +1,3 @@
-import React from "react";
 import { initialProducts } from "../lib/data";
 import Title from "./UI/title";
 
