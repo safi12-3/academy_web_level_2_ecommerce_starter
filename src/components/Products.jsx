@@ -15,19 +15,20 @@ export default function Products() {
           id="featured-products"
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4 mt-10"
         >
+          <Card  products={initialProducts} count={4}/>
           {/* Active Section */}
-          {initialProducts.slice(0, 4).map((product) => (
+          {/* {initialProducts.slice(0, 4).map((product) => (
             <div
               key={product.id}
               className="shadow-md bg-white rounded-lg overflow-hidden flex flex-col transition-transform duration-300 hover:scale-105"
             >
-              {/* Product Image */}
+           
               <img
                 src={product.image_url}
                 className="w-full h-48 sm:h-56 object-cover"
                 alt={product.name}
               />
-              {/* Product Info */}
+             
               <div className="p-4 flex flex-col gap-2">
                 <h1 className="font-bold text-base sm:text-lg">{product.name}</h1>
                 <h2 className="text-gray-600 text-sm sm:text-base">
@@ -46,7 +47,7 @@ export default function Products() {
                 </div>
               </div>
             </div>
-          ))}
+          ))} */}
 
           {/* Commented Section */}
           {/* {initialProducts.slice(0, -1).map((product) => (
