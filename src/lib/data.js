@@ -1,7 +1,7 @@
 // Sample products data
-import Electronics from '../assets/Electronics.jpg'
-import Clothes from '../assets/clothes.jpg'
-import Living from '../assets/living-room.jpg'
+import Electronics from "../assets/Electronics.jpg";
+import Clothes from "../assets/clothes.jpg";
+import Living from "../assets/living-room.jpg";
 
 const initialProducts = [
   {
@@ -25,7 +25,7 @@ const initialProducts = [
     name: "Running Shoes",
     description: "Comfortable athletic shoes for runners",
     price: 89.99,
-    category: "Sports",
+    category: ["Clothes", "ports"],
     image_url: "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
   },
   {
@@ -33,7 +33,7 @@ const initialProducts = [
     name: "Coffee Maker",
     description: "Automatic drip coffee maker",
     price: 49.99,
-    category: "Home",
+    category: ["Home & living", "Electronics"],
     image_url: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085",
   },
   {
@@ -41,7 +41,7 @@ const initialProducts = [
     name: "Backpack",
     description: "Durable everyday backpack",
     price: 59.99,
-    category: "Accessories",
+    category: "Sports",
     image_url: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62",
   },
 ];
@@ -60,7 +60,7 @@ const featured_categories = [
   {
     id: 8,
     name: "Home & living",
-    image_src: Living ,
+    image_src: Living,
   },
 ];
 

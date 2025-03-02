@@ -1,17 +1,20 @@
 import home_image from "../assets/home_image.jpg";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const HeroSection = () => {
+  const navigate = useNavigate();
+
+  const startShopping = () => {
+    navigate("/categories");
+  };
   return (
     <div>
-      {/* Hero Section */}
       <div className="relative w-full h-[600px]">
-        {/* Background Image with Dark Overlay */}
         <div
           className="absolute inset-0 bg-cover bg-center brightness-50"
           style={{ backgroundImage: `url(${home_image})` }}
         ></div>
 
-        {/* Text Content */}
         <div className="absolute inset-0 flex flex-col justify-center items-start ml-10 space-y-4 left-[13%]">
           <h1 className="text-white text-4xl md:text-6xl font-bold">
             Welcome to ShopHub
@@ -20,9 +23,10 @@ const HeroSection = () => {
             Discover amazing products at great prices
           </p>
 
-          {/* CTA Button */}
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg text-lg font-semibold flex items-center">
-            {/* Shopping Icon */}
+          <button
+            onClick={startShopping}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg text-lg font-semibold flex items-center cursor-pointer"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -43,8 +47,6 @@ const HeroSection = () => {
           </button>
         </div>
       </div>
-
-      {/* Featured Categories Section */}
     </div>
   );
 };

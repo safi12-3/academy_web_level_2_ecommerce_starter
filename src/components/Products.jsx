@@ -1,4 +1,5 @@
 import { initialProducts } from "../lib/data";
+import Card from "./Card";
 import Title from "./UI/title";
 
 export default function Products() {
@@ -10,7 +11,9 @@ export default function Products() {
           id="featured-products"
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 p-4 mt-10"
         >
-          {initialProducts.slice(0, -1).map((product) => (
+          <Card products={initialProducts} count={4} />
+
+          {/* {initialProducts.slice(0, -1).map((product) => (
             <div
               id="product-card"
               key={product.id}
@@ -36,11 +39,10 @@ export default function Products() {
                 </div>
               </div>
             </div>
-          ))}
+          ))} */}
         </div>
-
         <div className="flex justify-center mt-6">
-          <button className="px-4 py-2 text-base font-medium rounded-md text-blue-600 bg-white hover:bg-gray-50">
+          <button className="px-4 py-2 text-base font-medium rounded-md text-blue-600 bg-white hover:bg-gray-50 cursor-pointer">
             View All Products
           </button>
         </div>
