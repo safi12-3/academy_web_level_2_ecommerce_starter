@@ -16,7 +16,10 @@ const Card = () => {
             />
             <button className="absolute top-2 right-2 p-2 rounded-full bg-white shadow-md hover:bg-gray-100 cursor-pointer">
 
+
               <FaRegHeart className="w-5 h-5 text-gray-600" />
+
+
 
             </button>
           </div>
