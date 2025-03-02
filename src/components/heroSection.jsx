@@ -1,3 +1,4 @@
+import React from "react";
 import home_image from "../assets/home_image.jpg";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 
@@ -7,30 +8,39 @@ const HeroSection = () => {
   const startShopping = () => {
     navigate("/categories");
   };
+
   return (
     <div>
-      <div className="relative w-full h-[600px]">
+      <div className="relative w-full h-[600px] md:h-[700px]">
+        {/* Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center brightness-50"
           style={{ backgroundImage: `url(${home_image})` }}
         ></div>
 
-        <div className="absolute inset-0 flex flex-col justify-center items-start ml-10 space-y-4 left-[13%]">
-          <h1 className="text-white text-4xl md:text-6xl font-bold">
+        {/* Content */}
+        <div
+          className="absolute inset-0 flex flex-col justify-center items-start ml-10 space-y-4 md:left-[13%] sm:items-center sm:ml-0 sm:text-center"
+        >
+          {/* Title */}
+          <h1 className="text-white text-3xl sm:text-4xl md:text-6xl font-bold">
             Welcome to ShopHub
           </h1>
-          <p className="text-white text-xl md:text-2xl">
+
+          {/* Description */}
+          <p className="text-white text-base sm:text-lg md:text-2xl">
             Discover amazing products at great prices
           </p>
 
+          {/* Button */}
           <button
             onClick={startShopping}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg text-lg font-semibold flex items-center cursor-pointer"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 sm:px-8 sm:py-3 rounded-lg text-sm sm:text-lg font-semibold flex items-center cursor-pointer"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
+              width="20"
+              height="20"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"

@@ -1,3 +1,4 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { featured_categories } from "../lib/data";
 import Title from "./UI/title";
@@ -11,23 +12,27 @@ export default function Categories() {
 
   return (
     <div id="categories" className="flex flex-col gap-5">
+      {/* Title */}
       <Title text={"Featured Categories"} />
 
-      <div className="flex justify-center gap-10 mt-10">
+      {/* Categories Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-10 px-4">
         {featured_categories.map((category) => (
           <div
             key={category.id}
-            className="relative rounded-lg overflow-hidden shadow-md cursor-pointer transform transition-transform duration-300 hover:scale-105"
+            className="relative rounded-lg overflow-hidden shadow-md cursor-pointer transform transition-transform duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500"
             onClick={() => handleCategoryClick(category.name)}
           >
+            {/* Category Image */}
             <img
-              className="w-full h-64 object-cover"
+              className="w-full h-40 sm:h-48 md:h-64 object-cover"
               src={category.image_src}
               alt={category.name}
             />
 
+            {/* Overlay with Category Name */}
             <div className="absolute inset-0 bg-black/40 flex justify-center items-center">
-              <h2 className="text-white text-2xl font-semibold">
+              <h2 className="text-white text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-center px-4">
                 {category.name}
               </h2>
             </div>
