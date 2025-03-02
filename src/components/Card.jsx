@@ -1,9 +1,11 @@
-import { FaRegHeart } from "react-icons/fa"; // Import both filled and outline heart icons
-import { initialProducts } from "../lib/data";
-const Card = () => {
+import { FaRegHeart } from "react-icons/fa";
+import PropTypes from "prop-types";
+
+const Card = ({ products, count }) => {
+  const productsToShow = products.slice(0, count);
   return (
-    <div className="container grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      {initialProducts.map((product) => (
+    <>
+      {productsToShow.map((product) => (
         <div
           key={product.id}
           className="card bg-white rounded-lg shadow-md overflow-hidden"
@@ -32,8 +34,21 @@ const Card = () => {
           </div>
         </div>
       ))}
-    </div>
+    </>
   );
+};
+
+Card.propTypes = {
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      image_url: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  count: PropTypes.number.isRequired,
 };
 
 export default Card;

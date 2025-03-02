@@ -1,5 +1,3 @@
-import React from "react";
-
 const Footer = () => {
   return (
     <footer className="bg-gray-800 text-white py-12 ">
@@ -9,20 +7,52 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-semibold mb-4">ShopHub</h3>
             <ul className="space-y-4">
-              <li><a href="#" className="hover:text-blue-400">About Us</a></li>
-              <li><a href="#" className="hover:text-blue-400">Blog</a></li>
-              <li><a href="#" className="hover:text-blue-400">Contact</a></li>
-              <li><a href="#" className="hover:text-blue-400">Privacy Policy</a></li>
+              <li>
+                <a href="#" className="hover:text-blue-400">
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-blue-400">
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-blue-400">
+                  Contact
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-blue-400">
+                  Privacy Policy
+                </a>
+              </li>
             </ul>
           </div>
 
           <div>
             <h3 className="text-xl font-semibold mb-4">Follow Us</h3>
             <ul className="space-y-4">
-              <li><a href="#" className="hover:text-blue-400">Facebook</a></li>
-              <li><a href="#" className="hover:text-blue-400">Twitter</a></li>
-              <li><a href="#" className="hover:text-blue-400">Instagram</a></li>
-              <li><a href="#" className="hover:text-blue-400">LinkedIn</a></li>
+              <li>
+                <a href="#" className="hover:text-blue-400">
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-blue-400">
+                  Twitter
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-blue-400">
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-blue-400">
+                  LinkedIn
+                </a>
+              </li>
             </ul>
           </div>
 
