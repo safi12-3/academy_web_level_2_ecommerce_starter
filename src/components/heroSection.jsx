@@ -1,4 +1,3 @@
-import React from "react";
 import home_image from "../assets/home_image.jpg";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 
@@ -19,9 +18,7 @@ const HeroSection = () => {
         ></div>
 
         {/* Content */}
-        <div
-          className="absolute inset-0 flex flex-col justify-center items-start ml-10 space-y-4 md:left-[13%] sm:items-center sm:ml-0 sm:text-center"
-        >
+        <div className="absolute inset-0 flex flex-col justify-center items-start ml-10 space-y-4 md:left-[13%] sm:items-center sm:ml-0 sm:text-center">
           {/* Title */}
           <h1 className="text-white text-3xl sm:text-4xl md:text-6xl font-bold">
             Welcome to ShopHub

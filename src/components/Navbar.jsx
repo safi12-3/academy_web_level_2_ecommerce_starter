@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import {
@@ -6,10 +6,31 @@ import {
   faUserTie,
   faBars,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const navigate = useNavigate();
+
+  // Function to check the authentication status
+  const checkAuthentication = () => {
+    const authStatus = localStorage.getItem("isAuthenticated");
+    setIsAuthenticated(authStatus === "true");
+  };
+
+  // Call checkAuthentication whenever the component mounts and whenever there's a change
+  useEffect(() => {
+    checkAuthentication(); // Check on initial mount
+  }); // The empty array ensures this only runs once when the component mounts
+
+  // Handle sign-out
+  const handleLogout = () => {
+    // Remove authentication from localStorage
+    localStorage.removeItem("isAuthenticated");
+    checkAuthentication(); // Update state immediately without needing to reload
+    navigate("/"); // Redirect to the login page
+  };
 
   return (
     <nav className="bg-white shadow-md h-[65px] flex items-center relative px-6">
@@ -43,6 +64,7 @@ const Navbar = () => {
             </Link>
           </div>
         </div>
+
         <div className="flex items-center gap-10">
           {/* Search Bar */}
           <input
@@ -65,12 +87,21 @@ const Navbar = () => {
                 className="text-gray-600 text-xl"
               />
             </Link>
-            <Link to="/auth">
-              <FontAwesomeIcon
-                icon={faUserTie}
-                className="text-gray-600 text-xl"
-              />
-            </Link>
+
+            {/* Conditionally render User icon or Sign-out button */}
+            {!isAuthenticated ? (
+              <Link to="/login">
+                <FontAwesomeIcon
+                  icon={faUserTie}
+                  className="text-gray-600 text-xl"
+                />
+              </Link>
+            ) : (
+              <button onClick={handleLogout} className="text-gray-600 text-xl">
+                Sign Out
+              </button>
+            )}
+
             {/* Hamburger Menu Button */}
             <button
               className="md:hidden text-gray-600 text-xl"
@@ -81,6 +112,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+
       {/* Mobile Navigation Links */}
       <div
         className={`${

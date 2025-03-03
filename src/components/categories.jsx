@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import { featured_categories } from "../lib/data";
 import Title from "./UI/title";
