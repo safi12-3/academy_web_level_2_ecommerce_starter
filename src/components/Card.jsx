@@ -1,8 +1,20 @@
-import { FaRegHeart } from "react-icons/fa";
+import { FaRegHeart, FaHeart } from "react-icons/fa";
 import PropTypes from "prop-types";
 
-const Card = ({ products, count }) => {
+const Card = ({
+  products,
+  count,
+  favorites = [],
+  addToFavorites,
+  removeFromFavorites,
+}) => {
   const productsToShow = products.slice(0, count);
+
+  // Function to check if the product is in favorites
+  const isFavorite = (product) => {
+    return favorites.some((item) => item.id === product.id);
+  };
+
   return (
     <>
       {productsToShow.map((product) => (
@@ -16,13 +28,21 @@ const Card = ({ products, count }) => {
               alt={product.name}
               className="w-full h-full object-cover"
             />
-            <button className="absolute top-2 right-2 p-2 rounded-full bg-white shadow-md hover:bg-gray-100 cursor-pointer">
-
-
-              <FaRegHeart className="w-5 h-5 text-gray-600" />
-
-
-
+            <button
+              onClick={() => {
+                if (isFavorite(product)) {
+                  removeFromFavorites(product);
+                } else {
+                  addToFavorites(product);
+                }
+              }}
+              className="absolute top-2 right-2 p-2 rounded-full bg-white shadow-md hover:bg-gray-100 cursor-pointer"
+            >
+              {isFavorite(product) ? (
+                <FaHeart className="w-5 h-5 text-red-500" />
+              ) : (
+                <FaRegHeart className="w-5 h-5 text-gray-600" />
+              )}
             </button>
           </div>
           <div className="p-4 flex flex-col gap-2">
@@ -54,6 +74,9 @@ Card.propTypes = {
     })
   ).isRequired,
   count: PropTypes.number.isRequired,
+  favorites: PropTypes.array.isRequired, // Ensure this prop is always passed as an array
+  addToFavorites: PropTypes.func.isRequired,
+  removeFromFavorites: PropTypes.func.isRequired,
 };
 
 export default Card;
