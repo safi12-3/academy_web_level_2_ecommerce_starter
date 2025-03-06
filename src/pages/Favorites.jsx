@@ -6,13 +6,11 @@ const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
   const navigate = useNavigate();
 
-  // Load favorites from localStorage on initial load
   useEffect(() => {
     const savedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
     setFavorites(savedFavorites);
   }, []);
 
-  // Function to add product to favorites
   const addToFavorites = (product) => {
     if (!favorites.some((item) => item.id === product.id)) {
       setFavorites((prevFavorites) => {
@@ -23,7 +21,6 @@ const Favorites = () => {
     }
   };
 
-  // Function to remove product from favorites
   const removeFromFavorites = (product) => {
     const updatedFavorites = favorites.filter((item) => item.id !== product.id);
     setFavorites(updatedFavorites);
@@ -32,7 +29,9 @@ const Favorites = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <h1 className="text-3xl font-bold">Your Favorite Items</h1>
+      {favorites.length > 0 && (
+        <h1 className="text-3xl font-bold">Your Favorite Items</h1>
+      )}
       {favorites.length === 0 ? (
         <div className="text-center">
           <h2 className="mt-2 text-lg font-medium text-gray-900">

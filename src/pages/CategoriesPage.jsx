@@ -9,31 +9,32 @@ const CategoriesPage = () => {
   const navigate = useNavigate();
   const { category } = location.state || {};
 
-  // Initialize state for favorites
   const [favorites, setFavorites] = useState(() => {
     return JSON.parse(localStorage.getItem("favorites")) || [];
   });
 
-  // Update localStorage whenever favorites state changes
+  const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
+
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(favorites));
   }, [favorites]);
 
-  // Add to favorites
   const addToFavorites = (product) => {
-    if (!favorites.some((item) => item.id === product.id)) {
-      setFavorites((prevFavorites) => [...prevFavorites, product]);
+    if (isAuthenticated) {
+      if (!favorites.some((item) => item.id === product.id)) {
+        setFavorites((prevFavorites) => [...prevFavorites, product]);
+      }
     }
   };
 
-  // Remove from favorites
   const removeFromFavorites = (product) => {
-    setFavorites((prevFavorites) =>
-      prevFavorites.filter((item) => item.id !== product.id)
-    );
+    if (isAuthenticated) {
+      setFavorites((prevFavorites) =>
+        prevFavorites.filter((item) => item.id !== product.id)
+      );
+    }
   };
 
-  // Filter products based on the selected category
   const filteredProducts = category
     ? initialProducts.filter((product) => product.category.includes(category))
     : initialProducts;
@@ -46,9 +47,9 @@ const CategoriesPage = () => {
         <Card
           products={filteredProducts}
           count={5}
-          favorites={favorites} // Make sure favorites is passed here
-          addToFavorites={addToFavorites}
-          removeFromFavorites={removeFromFavorites}
+          favorites={favorites}
+          addToFavorites={isAuthenticated ? addToFavorites : null}
+          removeFromFavorites={isAuthenticated ? removeFromFavorites : null}
         />
       </div>
       <div className="mt-6">

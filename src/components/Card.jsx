@@ -1,23 +1,57 @@
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import PropTypes from "prop-types";
+import { useState, useEffect } from "react";
 
 const Card = ({
   products,
   count,
-  favorites = [],
   addToFavorites,
   removeFromFavorites,
+  favorites,
 }) => {
-  const productsToShow = products.slice(0, count);
+  // Sync favorites state with localStorage whenever it changes for logged-out users
+  const [savedFavorites, setSavedFavorites] = useState(() => {
+    return JSON.parse(localStorage.getItem("savedFavorites")) || [];
+  });
 
-  // Function to check if the product is in favorites
+  useEffect(() => {
+    // Sync localStorage with the favorites array
+    localStorage.setItem("savedFavorites", JSON.stringify(savedFavorites));
+  }, [savedFavorites]);
+
+  // Function to check if a product is a favorite
   const isFavorite = (product) => {
+    if (!localStorage.getItem("isAuthenticated")) {
+      // When logged out, check savedFavorites in localStorage
+      return savedFavorites.some((item) => item.id === product.id);
+    }
+    // When logged in, check favorites prop
     return favorites.some((item) => item.id === product.id);
+  };
+
+  const handleFavoriteClick = (product) => {
+    if (!localStorage.getItem("isAuthenticated")) {
+      // When logged out, add/remove from savedFavorites in localStorage
+      if (!isFavorite(product)) {
+        setSavedFavorites((prevFavorites) => [...prevFavorites, product]);
+      } else {
+        setSavedFavorites((prevFavorites) =>
+          prevFavorites.filter((item) => item.id !== product.id)
+        );
+      }
+    } else {
+      // When logged in, add/remove from favorites array passed as props
+      if (isFavorite(product)) {
+        removeFromFavorites(product); // Remove from favorites
+      } else {
+        addToFavorites(product); // Add to favorites
+      }
+    }
   };
 
   return (
     <>
-      {productsToShow.map((product) => (
+      {products.slice(0, count).map((product) => (
         <div
           key={product.id}
           className="card bg-white rounded-lg shadow-md overflow-hidden"
@@ -29,13 +63,7 @@ const Card = ({
               className="w-full h-full object-cover"
             />
             <button
-              onClick={() => {
-                if (isFavorite(product)) {
-                  removeFromFavorites(product);
-                } else {
-                  addToFavorites(product);
-                }
-              }}
+              onClick={() => handleFavoriteClick(product)} // Handle click
               className="absolute top-2 right-2 p-2 rounded-full bg-white shadow-md hover:bg-gray-100 cursor-pointer"
             >
               {isFavorite(product) ? (

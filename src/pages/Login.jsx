@@ -4,25 +4,33 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isSignup, setIsSignup] = useState(false); // Toggle between Login and Signup
+  const [isSignup, setIsSignup] = useState(false);
   const navigate = useNavigate();
 
-  // Handle Login
   const handleLogin = (e) => {
     e.preventDefault();
 
-    // Set the authentication flag in localStorage
     localStorage.setItem("isAuthenticated", "true");
-    navigate("/"); // Redirect to the home page
+
+    const savedFavorites =
+      JSON.parse(localStorage.getItem("savedFavorites")) || [];
+    if (savedFavorites.length > 0) {
+      let currentFavorites =
+        JSON.parse(localStorage.getItem("favorites")) || [];
+      currentFavorites = [...currentFavorites, ...savedFavorites];
+      localStorage.setItem("favorites", JSON.stringify(currentFavorites));
+
+      localStorage.removeItem("savedFavorites");
+    }
+
+    navigate("/");
   };
 
-  // Handle Signup
   const handleSignup = (e) => {
     e.preventDefault();
 
-    // Set the authentication flag in localStorage
     localStorage.setItem("isAuthenticated", "true");
-    navigate("/"); // Redirect to home page
+    navigate("/");
   };
 
   return (
@@ -79,7 +87,7 @@ const Login = () => {
           <div className="text-center">
             <button
               className="text-blue-600 hover:text-blue-500"
-              onClick={() => setIsSignup(!isSignup)} // Toggle between login and signup
+              onClick={() => setIsSignup(!isSignup)}
             >
               {isSignup
                 ? "Already have an account? Sign In"
