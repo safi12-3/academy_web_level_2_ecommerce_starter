@@ -1,31 +1,42 @@
 import { useState, useEffect } from "react";
 import { initialProducts } from "../lib/data";
 import Card from "./Card";
-import Title from "./UI/title";
+import Title from "./UI/Title";
 
 export default function Products() {
+  const [products, setProducts] = useState(initialProducts);
   const [favorites, setFavorites] = useState(() => {
-    // Get favorites from localStorage or use an empty array if not found
     return JSON.parse(localStorage.getItem("favorites")) || [];
   });
 
-  // Sync favorites with localStorage whenever it changes
+  // Fetch products (ensure data.json is in /public/)
+  async function getProducts() {
+    try {
+      const response = await fetch("/data.json");
+      if (!response.ok) throw new Error("Failed to fetch products");
+      const data = await response.json();
+      setProducts(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(favorites));
   }, [favorites]);
 
-  // Function to add a product to favorites
   const addToFavorites = (product) => {
     if (!favorites.some((item) => item.id === product.id)) {
-      setFavorites((prevFavorites) => [...prevFavorites, product]);
+      setFavorites([...favorites, product]);
     }
   };
 
-  // Function to remove a product from favorites
   const removeFromFavorites = (product) => {
-    setFavorites((prevFavorites) =>
-      prevFavorites.filter((item) => item.id !== product.id)
-    );
+    setFavorites(favorites.filter((item) => item.id !== product.id));
   };
 
   return (
@@ -37,11 +48,11 @@ export default function Products() {
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 p-4 mt-10"
         >
           <Card
-            products={initialProducts}
-            count={4} // Show only the first 4 products
-            favorites={favorites} // Pass current favorites state
-            addToFavorites={addToFavorites} // Function to add to favorites
-            removeFromFavorites={removeFromFavorites} // Function to remove from favorites
+            products={products}
+            count={4}
+            favorites={favorites}
+            addToFavorites={addToFavorites}
+            removeFromFavorites={removeFromFavorites}
           />
         </div>
 

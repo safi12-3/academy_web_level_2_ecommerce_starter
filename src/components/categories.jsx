@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { featured_categories } from "../lib/data";
-import Title from "./UI/title";
+
 
 export default function Categories() {
   const navigate = useNavigate();
