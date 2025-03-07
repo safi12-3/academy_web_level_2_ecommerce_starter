@@ -9,7 +9,6 @@ export default function Products() {
     return JSON.parse(localStorage.getItem("favorites")) || [];
   });
 
-  // Fetch products (ensure data.json is in /public/)
   async function getProducts() {
     try {
       const response = await fetch("/data.json");

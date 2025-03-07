@@ -1,5 +1,5 @@
 import home_image from "../assets/home_image.jpg";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -11,25 +11,18 @@ const HeroSection = () => {
   return (
     <div>
       <div className="relative w-full h-[600px] md:h-[700px]">
-        {/* Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center brightness-50"
           style={{ backgroundImage: `url(${home_image})` }}
         ></div>
 
-        {/* Content */}
         <div className="absolute inset-0 flex flex-col justify-center items-start ml-10 space-y-4 md:left-[13%] sm:items-center sm:ml-0 sm:text-center">
-          {/* Title */}
           <h1 className="text-white text-3xl sm:text-4xl md:text-6xl font-bold">
             Welcome to ShopHub
           </h1>
-
-          {/* Description */}
           <p className="text-white text-base sm:text-lg md:text-2xl">
             Discover amazing products at great prices
           </p>
-
-          {/* Button */}
           <button
             onClick={startShopping}
             className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 sm:px-8 sm:py-3 rounded-lg text-sm sm:text-lg font-semibold flex items-center cursor-pointer"

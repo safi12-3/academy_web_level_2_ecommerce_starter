@@ -1,4 +1,4 @@
-import PropTypes from "prop-types"; // Import PropTypes to validate the props
+import PropTypes from "prop-types";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { useContext } from "react";
 import { CartContext } from "../Context/CartContext";
@@ -61,13 +61,12 @@ const Card = ({
   );
 };
 
-// Adding PropTypes validation
 Card.propTypes = {
-  products: PropTypes.array.isRequired, // 'products' should be an array and is required
-  count: PropTypes.number.isRequired, // 'count' should be a number and is required
-  addToFavorites: PropTypes.func.isRequired, // 'addToFavorites' should be a function and is required
-  removeFromFavorites: PropTypes.func.isRequired, // 'removeFromFavorites' should be a function and is required
-  favorites: PropTypes.array.isRequired, // 'favorites' should be an array and is required
+  products: PropTypes.array.isRequired,
+  count: PropTypes.number.isRequired,
+  addToFavorites: PropTypes.func.isRequired,
+  removeFromFavorites: PropTypes.func.isRequired,
+  favorites: PropTypes.array.isRequired,
 };
 
 export default Card;

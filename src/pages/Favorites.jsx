@@ -6,7 +6,7 @@ const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
   const navigate = useNavigate();
 
-  const isAuthenticated = localStorage.getItem("isAuthenticated") === "true"; // Check if the user is logged in
+  const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
 
   useEffect(() => {
     if (isAuthenticated) {

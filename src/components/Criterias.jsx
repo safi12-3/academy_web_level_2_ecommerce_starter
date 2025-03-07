@@ -66,7 +66,6 @@ const Criterias = ({
   );
 };
 
-// Add PropTypes validation
 Criterias.propTypes = {
   minPrice: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   maxPrice: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),

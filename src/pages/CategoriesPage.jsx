@@ -75,7 +75,6 @@ const CategoriesPage = () => {
     }
   };
 
-  // Debounced search handler
   const handleSearch = useCallback(
     debounce((query) => {
       setSearchQuery(query);
@@ -83,7 +82,6 @@ const CategoriesPage = () => {
     []
   );
 
-  // Filter products based on category, price range, and search query
   const filteredProducts = initialProducts.filter((product) => {
     const matchesCategory =
       selectedCategory === "" || product.category.includes(selectedCategory);

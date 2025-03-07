@@ -4,17 +4,13 @@ const Footer = () => {
   return (
     <footer className="bg-gray-800 text-white py-6">
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6">
-        {/* Flexbox for Desktop Layout */}
         <div className="flex flex-col sm:flex-row justify-between items-start gap-8">
-          {/* Shop Info */}
           <div className="flex-1 w-full sm:w-auto">
             <h3 className="text-lg sm:text-xl font-semibold mb-4">ShopHub</h3>
             <p className="text-sm sm:text-base text-gray-400">
               Your one-stop shop for all your products
             </p>
           </div>
-
-          {/* Quick Links */}
           <div className="flex-1 w-full sm:w-auto">
             <h2 className="text-base sm:text-lg font-semibold">Quick Links</h2>
             <ul className="mt-2 space-y-1 text-sm sm:text-base text-gray-400">
@@ -36,7 +32,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact Info */}
           <div className="flex-1 w-full sm:w-auto">
             <h3 className="text-lg sm:text-xl font-semibold mb-4">Contact</h3>
             <ul className="space-y-1 text-sm sm:text-base text-gray-400">
@@ -47,7 +42,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Social Media Links */}
           <div className="flex-1 w-full sm:w-auto">
             <h3 className="text-lg sm:text-xl font-semibold mb-4">Follow Us</h3>
             <div className="flex gap-4">
@@ -63,8 +57,6 @@ const Footer = () => {
             </div>
           </div>
         </div>
-
-        {/* Copyright Section */}
         <div className="mt-6 border-t border-gray-700 pt-4 text-center text-sm sm:text-base">
           <p>&copy; 2025 ShopHub. All rights reserved.</p>
         </div>

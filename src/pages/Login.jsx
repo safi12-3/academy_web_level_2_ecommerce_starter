@@ -12,7 +12,6 @@ const Login = () => {
 
     localStorage.setItem("isAuthenticated", "true");
 
-    // If there are savedFavorites in localStorage, merge them with the authenticated favorites
     const savedFavorites =
       JSON.parse(localStorage.getItem("savedFavorites")) || [];
     let currentFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -20,7 +19,6 @@ const Login = () => {
     currentFavorites = [...currentFavorites, ...savedFavorites];
     localStorage.setItem("favorites", JSON.stringify(currentFavorites));
 
-    // Remove savedFavorites after merging them
     localStorage.removeItem("savedFavorites");
 
     navigate("/");

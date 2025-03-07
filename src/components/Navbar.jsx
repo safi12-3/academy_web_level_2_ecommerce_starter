@@ -13,36 +13,28 @@ const Navbar = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
 
-  // Function to check the authentication status
   const checkAuthentication = () => {
     const authStatus = localStorage.getItem("isAuthenticated");
     setIsAuthenticated(authStatus === "true");
   };
 
-  // Call checkAuthentication whenever the component mounts and whenever there's a change
   useEffect(() => {
-    checkAuthentication(); // Check on initial mount
-  }); // The empty array ensures this only runs once when the component mounts
+    checkAuthentication();
+  });
 
-  // Handle sign-out
   const handleLogout = () => {
-    // Remove authentication from localStorage
     localStorage.removeItem("isAuthenticated");
-    checkAuthentication(); // Update state immediately without needing to reload
-    navigate("/"); // Redirect to the login page
+    checkAuthentication();
+    navigate("/");
   };
 
   return (
     <nav className="bg-white shadow-md h-[65px] flex items-center relative px-6">
-      {/* Main Container */}
       <div className="flex w-full justify-between items-center mx-10">
-        {/* Logo */}
         <div className="flex items-center gap-10">
           <Link className="text-xl font-bold text-gray-900" to="/">
             ShopHub
           </Link>
-
-          {/* Desktop Navigation Links */}
           <div className="hidden md:flex space-x-6">
             <Link
               className="text-gray-900 hover:text-gray-500 text-sm font-medium"
@@ -66,14 +58,11 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-10">
-          {/* Search Bar */}
           <input
             type="text"
             placeholder="Search products..."
             className="hidden md:block w-64 px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-
-          {/* Icons Section */}
           <div className="flex items-center space-x-4">
             <Link to="/favorites">
               <FontAwesomeIcon
@@ -88,7 +77,6 @@ const Navbar = () => {
               />
             </Link>
 
-            {/* Conditionally render User icon or Sign-out button */}
             {!isAuthenticated ? (
               <Link to="/login">
                 <FontAwesomeIcon
@@ -102,7 +90,6 @@ const Navbar = () => {
               </button>
             )}
 
-            {/* Hamburger Menu Button */}
             <button
               className="md:hidden text-gray-600 text-xl"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -113,7 +100,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation Links */}
       <div
         className={`${
           isMenuOpen ? "block" : "hidden"
