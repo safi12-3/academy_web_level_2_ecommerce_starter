@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { initialProducts } from "../lib/data";
 import Card from "../components/Card";
 import Criterias from "../components/Criterias";
@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 const CategoriesPage = () => {
   const location = useLocation();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { category } = location.state || {};
 
   const [favorites, setFavorites] = useState(() => {
@@ -51,14 +51,6 @@ const CategoriesPage = () => {
           addToFavorites={isAuthenticated ? addToFavorites : null}
           removeFromFavorites={isAuthenticated ? removeFromFavorites : null}
         />
-      </div>
-      <div className="mt-6">
-        <button
-          onClick={() => navigate("/favorites")}
-          className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-        >
-          View Favorites
-        </button>
       </div>
     </div>
   );
