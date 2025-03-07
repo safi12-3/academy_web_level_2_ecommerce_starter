@@ -8,7 +8,7 @@ import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import Favorites from "./pages/Favorites";
-import { CartProvider } from "./Context/Cart";
+import { CartProvider } from "./Context/CartContext";
 import Cart from "./Context/Cart";
  
 
