@@ -2,27 +2,32 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { initialProducts } from "../lib/data";
 import Card from "../components/Card";
 import Criterias from "../components/Criterias";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import debounce from "lodash.debounce";
 
 const CategoriesPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { category } = location.state || {};
+  const { category: initialCategory } = location.state || {};
 
   const [favorites, setFavorites] = useState(() => {
-    // Load favorites from localStorage (logged-in users)
     return JSON.parse(localStorage.getItem("favorites")) || [];
   });
 
   const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
 
   const [localFavorites, setLocalFavorites] = useState(() => {
-    // Load localFavorites for logged-out users from localStorage
     return JSON.parse(localStorage.getItem("savedFavorites")) || [];
   });
 
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState(
+    initialCategory || ""
+  );
+  const [searchQuery, setSearchQuery] = useState("");
+
   useEffect(() => {
-    // Save logged-in favorites to localStorage
     if (isAuthenticated) {
       localStorage.setItem("favorites", JSON.stringify(favorites));
     }
@@ -34,7 +39,6 @@ const CategoriesPage = () => {
         setFavorites((prevFavorites) => [...prevFavorites, product]);
       }
     } else {
-      // If the user is not authenticated, manage favorites in localStorage
       const savedFavorites =
         JSON.parse(localStorage.getItem("savedFavorites")) || [];
       if (!savedFavorites.some((item) => item.id === product.id)) {
@@ -50,7 +54,6 @@ const CategoriesPage = () => {
         prevFavorites.filter((item) => item.id !== product.id)
       );
     } else {
-      // Handle remove for logged-out users
       const savedFavorites =
         JSON.parse(localStorage.getItem("savedFavorites")) || [];
       const updatedFavorites = savedFavorites.filter(
@@ -62,7 +65,6 @@ const CategoriesPage = () => {
   };
 
   const handleFavoriteToggle = (product) => {
-    // Toggle favorite for logged-out users
     const isAlreadyFavorited = localFavorites.some(
       (item) => item.id === product.id
     );
@@ -73,25 +75,50 @@ const CategoriesPage = () => {
     }
   };
 
-  const filteredProducts = category
-    ? initialProducts.filter((product) => product.category.includes(category))
-    : initialProducts;
+  // Debounced search handler
+  const handleSearch = useCallback(
+    debounce((query) => {
+      setSearchQuery(query);
+    }, 300),
+    []
+  );
+
+  // Filter products based on category, price range, and search query
+  const filteredProducts = initialProducts.filter((product) => {
+    const matchesCategory =
+      selectedCategory === "" || product.category.includes(selectedCategory);
+    const matchesPrice =
+      (minPrice === "" || product.price >= parseFloat(minPrice)) &&
+      (maxPrice === "" || product.price <= parseFloat(maxPrice));
+    const matchesSearch =
+      searchQuery === "" ||
+      product.name.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesPrice && matchesSearch;
+  });
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <h1 className="text-3xl font-bold">Shop by Category</h1>
-      <Criterias />
+      <Criterias
+        minPrice={minPrice}
+        maxPrice={maxPrice}
+        setMinPrice={setMinPrice}
+        setMaxPrice={setMaxPrice}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+        onSearchChange={(e) => handleSearch(e.target.value)}
+      />
       <div className="container grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
         <Card
           products={filteredProducts}
           count={5}
-          favorites={isAuthenticated ? favorites : localFavorites} // Use localFavorites for logged-out users
+          favorites={isAuthenticated ? favorites : localFavorites}
           addToFavorites={
             isAuthenticated ? addToFavorites : handleFavoriteToggle
-          } // Use handleFavoriteToggle for logged-out users
+          }
           removeFromFavorites={
             isAuthenticated ? removeFromFavorites : handleFavoriteToggle
-          } // Use handleFavoriteToggle for logged-out users
+          }
         />
       </div>
       <div className="mt-6">

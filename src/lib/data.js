@@ -25,7 +25,7 @@ const initialProducts = [
     name: "Running Shoes",
     description: "Comfortable athletic shoes for runners",
     price: 89.99,
-    category: ["Clothes", "ports"],
+    category: ["Clothes", "Sports"],
     image_url: "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
   },
   {
@@ -33,7 +33,7 @@ const initialProducts = [
     name: "Coffee Maker",
     description: "Automatic drip coffee maker",
     price: 49.99,
-    category: ["Home & living", "Electronics"],
+    category: ["Home & living", "Electronics", "Home"],
     image_url: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085",
   },
   {
@@ -41,7 +41,7 @@ const initialProducts = [
     name: "Backpack",
     description: "Durable everyday backpack",
     price: 59.99,
-    category: "Sports",
+    category: ["Sports", "Accessories"],
     image_url: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62",
   },
 ];

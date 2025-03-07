@@ -1,5 +1,6 @@
+import PropTypes from "prop-types"; // Import PropTypes to validate the props
 import { FaRegHeart, FaHeart } from "react-icons/fa";
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import { CartContext } from "../Context/CartContext";
 
 const Card = ({
@@ -10,38 +11,6 @@ const Card = ({
   favorites,
 }) => {
   const { addToCart } = useContext(CartContext);
-
-  // For handling the state of favorites when the user is logged out
-  const [localFavorites, setLocalFavorites] = useState(() => {
-    // Load from localStorage for logged-out users
-    return JSON.parse(localStorage.getItem("savedFavorites")) || [];
-  });
-
-  // This function handles toggling the heart icon for logged-out users
-  const handleFavoriteToggle = (product) => {
-    const isAlreadyFavorited = localFavorites.some(
-      (item) => item.id === product.id
-    );
-
-    if (isAlreadyFavorited) {
-      const updatedFavorites = localFavorites.filter(
-        (item) => item.id !== product.id
-      );
-      setLocalFavorites(updatedFavorites);
-      localStorage.setItem("savedFavorites", JSON.stringify(updatedFavorites));
-    } else {
-      const updatedFavorites = [...localFavorites, product];
-      setLocalFavorites(updatedFavorites);
-      localStorage.setItem("savedFavorites", JSON.stringify(updatedFavorites));
-    }
-  };
-
-  useEffect(() => {
-    // If the user is logged in, save the favorites in localStorage
-    if (localStorage.getItem("isAuthenticated") === "true") {
-      localStorage.setItem("favorites", JSON.stringify(favorites));
-    }
-  }, [favorites]);
 
   return (
     <>
@@ -57,26 +26,14 @@ const Card = ({
               className="w-full h-full object-cover"
             />
             <button
-              onClick={() => {
-                // If the user is logged in, use the provided functions
-                if (localStorage.getItem("isAuthenticated") === "true") {
-                  favorites.some((fav) => fav.id === product.id)
-                    ? removeFromFavorites(product)
-                    : addToFavorites(product);
-                } else {
-                  // For logged-out users, toggle heart icon in localStorage
-                  handleFavoriteToggle(product);
-                }
-              }}
+              onClick={() =>
+                favorites.some((fav) => fav.id === product.id)
+                  ? removeFromFavorites(product)
+                  : addToFavorites(product)
+              }
               className="absolute top-2 right-2 p-2 rounded-full bg-white shadow-md hover:bg-gray-100"
             >
-              {localStorage.getItem("isAuthenticated") === "true" ? (
-                favorites.some((fav) => fav.id === product.id) ? (
-                  <FaHeart className="w-5 h-5 text-red-500" />
-                ) : (
-                  <FaRegHeart className="w-5 h-5 text-gray-600" />
-                )
-              ) : localFavorites.some((fav) => fav.id === product.id) ? (
+              {favorites.some((fav) => fav.id === product.id) ? (
                 <FaHeart className="w-5 h-5 text-red-500" />
               ) : (
                 <FaRegHeart className="w-5 h-5 text-gray-600" />
@@ -102,6 +59,15 @@ const Card = ({
       ))}
     </>
   );
+};
+
+// Adding PropTypes validation
+Card.propTypes = {
+  products: PropTypes.array.isRequired, // 'products' should be an array and is required
+  count: PropTypes.number.isRequired, // 'count' should be a number and is required
+  addToFavorites: PropTypes.func.isRequired, // 'addToFavorites' should be a function and is required
+  removeFromFavorites: PropTypes.func.isRequired, // 'removeFromFavorites' should be a function and is required
+  favorites: PropTypes.array.isRequired, // 'favorites' should be an array and is required
 };
 
 export default Card;
