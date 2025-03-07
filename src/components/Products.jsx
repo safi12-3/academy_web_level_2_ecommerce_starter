@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { initialProducts } from "../lib/data";
 import Card from "./Card";
 import Title from "./UI/Title";
@@ -8,6 +9,12 @@ export default function Products() {
   const [favorites, setFavorites] = useState(() => {
     return JSON.parse(localStorage.getItem("favorites")) || [];
   });
+
+  const navigate = useNavigate();
+
+  const moveToCategories = () => {
+    navigate("/categories");
+  };
 
   async function getProducts() {
     try {
@@ -56,7 +63,10 @@ export default function Products() {
         </div>
 
         <div className="flex justify-center mt-6">
-          <button className="px-4 py-2 text-base font-medium rounded-md text-blue-600 bg-white hover:bg-gray-50 cursor-pointer">
+          <button
+            onClick={moveToCategories}
+            className="px-4 py-2 text-base font-medium rounded-md text-blue-600 bg-white hover:bg-gray-50 cursor-pointer"
+          >
             View All Products
           </button>
         </div>
